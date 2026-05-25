@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pratik Lamsal — AI & Cloud Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0d0d0f;
+  --ink2: #131316;
+  --ink3: #1c1c21;
+  --wire: #ffffff0d;
+  --wire2: #ffffff18;
+  --text: #ededea;
+  --sub: #8a8a82;
+  --faint: #3a3a38;
+  --gold: #c9a96e;
+  --gold2: #c9a96e22;
+  --teal: #4ecdc4;
+  --teal2: #4ecdc415;
+  --r: 6px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* GRAIN */
+body::after {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:999;
+  opacity:.5;
+}
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1.4rem 3rem;
+  background:linear-gradient(to bottom, #0d0d0fdd, transparent);
+}
+
+.nav-mark {
+  font-family:'Fraunces',serif;
+  font-size:.95rem;
+  font-weight:300;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--gold);
+  text-decoration:none;
+}
+
+.nav-links { display:flex; gap:2.5rem; list-style:none; }
+.nav-links a {
+  font-size:.78rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--sub);
+  text-decoration:none;
+  transition:color .2s;
+}
+.nav-links a:hover { color:var(--text); }
+
+/* HERO */
+.hero {
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:8rem 3rem 4rem;
+  max-width:1200px;
+  margin:0 auto;
+  gap:4rem;
+}
+
+.hero-left {}
+
+.eyebrow {
+  display:inline-flex; align-items:center; gap:.6rem;
+  font-family:'DM Mono',monospace;
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--teal);
+  margin-bottom:2rem;
+  opacity:0;
+  animation: rise .8s .1s ease forwards;
+}
+.eyebrow::before {
+  content:'';
+  width:28px; height:1px;
+  background:var(--teal);
+}
+
+.hero-name {
+  font-family:'Fraunces',serif;
+  font-size:clamp(3.5rem, 6vw, 5.8rem);
+  font-weight:300;
+  line-height:.95;
+  letter-spacing:-.02em;
+  margin-bottom:1.5rem;
+  opacity:0;
+  animation: rise .8s .2s ease forwards;
+}
+
+.hero-name em {
+  font-style:italic;
+  color:var(--gold);
+}
+
+.hero-role {
+  font-size:1rem;
+  color:var(--sub);
+  font-weight:300;
+  max-width:420px;
+  line-height:1.75;
+  margin-bottom:3rem;
+  opacity:0;
+  animation: rise .8s .3s ease forwards;
+}
+
+.hero-role strong { color:var(--text); font-weight:400; }
+
+.hero-cta {
+  display:flex; gap:1rem; flex-wrap:wrap;
+  opacity:0;
+  animation: rise .8s .4s ease forwards;
+}
+
+.btn {
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.8rem 1.6rem;
+  border-radius:var(--r);
+  font-size:.85rem;
+  font-weight:400;
+  text-decoration:none;
+  transition:all .25s;
+  letter-spacing:.02em;
+}
+
+.btn-fill {
+  background:var(--gold);
+  color:#0d0d0f;
+  border:1px solid var(--gold);
+}
+.btn-fill:hover {
+  background:transparent;
+  color:var(--gold);
+}
+
+.btn-ghost {
+  background:transparent;
+  color:var(--text);
+  border:1px solid var(--wire2);
+}
+.btn-ghost:hover {
+  border-color:var(--faint);
+  background:var(--ink3);
+}
+
+/* HERO RIGHT */
+.hero-right {
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  opacity:0;
+  animation: rise .9s .35s ease forwards;
+}
+
+.hero-photo-frame {
+  width:100%;
+  aspect-ratio:4/5;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid var(--wire);
+  background:var(--ink2);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:1rem;
+  color:var(--faint);
+  font-size:.8rem;
+  position:relative;
+}
+
+.hero-photo-frame .monogram {
+  width:72px; height:72px;
+  border-radius:50%;
+  background:var(--gold2);
+  border:1px solid #c9a96e44;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Fraunces',serif;
+  font-size:1.6rem;
+  font-weight:300;
+  color:var(--gold);
+}
+
+.hero-photo-frame img {
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+}
+
+.hero-stats {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.75rem;
+}
+
+.stat-pill {
+  background:var(--ink2);
+  border:1px solid var(--wire);
+  border-radius:var(--r);
+  padding:1rem 1.25rem;
+}
+
+.stat-pill-num {
+  font-family:'Fraunces',serif;
+  font-size:1.8rem;
+  font-weight:300;
+  color:var(--gold);
+  line-height:1;
+  margin-bottom:.25rem;
+}
+
+.stat-pill-label {
+  font-size:.72rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--sub);
+}
+
+/* MARQUEE */
+.marquee-wrap {
+  border-top:1px solid var(--wire);
+  border-bottom:1px solid var(--wire);
+  padding:.9rem 0;
+  overflow:hidden;
+  background:var(--ink2);
+}
+
+.marquee-track {
+  display:flex;
+  gap:3rem;
+  white-space:nowrap;
+  animation: scroll 30s linear infinite;
+}
+
+.marquee-item {
+  font-family:'DM Mono',monospace;
+  font-size:.75rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--sub);
+  flex-shrink:0;
+}
+
+.marquee-item span { color:var(--gold); margin-right:.5rem; }
+
+@keyframes scroll {
+  from { transform:translateX(0); }
+  to { transform:translateX(-50%); }
+}
+
+/* SECTIONS */
+.section {
+  padding:6rem 3rem;
+  max-width:1200px;
+  margin:0 auto;
+}
+
+.section-header {
+  display:flex;
+  align-items:baseline;
+  gap:1.5rem;
+  margin-bottom:3.5rem;
+}
+
+.section-num {
+  font-family:'DM Mono',monospace;
+  font-size:.72rem;
+  color:var(--faint);
+  letter-spacing:.08em;
+}
+
+.section-title {
+  font-family:'Fraunces',serif;
+  font-size:clamp(2rem, 3.5vw, 3rem);
+  font-weight:300;
+  letter-spacing:-.02em;
+  line-height:1.1;
+}
+
+.section-title em { color:var(--gold); font-style:italic; }
+
+/* BENTO GRID */
+.bento {
+  display:grid;
+  grid-template-columns:repeat(12, 1fr);
+  grid-template-rows:auto;
+  gap:1rem;
+}
+
+.card {
+  background:var(--ink2);
+  border:1px solid var(--wire);
+  border-radius:12px;
+  padding:2rem;
+  transition:all .3s;
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%), #c9a96e08, transparent 40%);
+  opacity:0;
+  transition:opacity .4s;
+}
+
+.card:hover::before { opacity:1; }
+.card:hover { border-color:var(--wire2); }
+
+.card-1 { grid-column:span 7; }
+.card-2 { grid-column:span 5; }
+.card-3 { grid-column:span 5; }
+.card-4 { grid-column:span 7; }
+.card-5 { grid-column:span 12; }
+
+.card-icon {
+  width:44px; height:44px;
+  border-radius:10px;
+  background:var(--gold2);
+  border:1px solid #c9a96e33;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.2rem;
+  margin-bottom:1.5rem;
+}
+
+.card-label {
+  font-family:'DM Mono',monospace;
+  font-size:.65rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--teal);
+  margin-bottom:.5rem;
+}
+
+.card-title {
+  font-family:'Fraunces',serif;
+  font-size:1.4rem;
+  font-weight:300;
+  letter-spacing:-.01em;
+  margin-bottom:.75rem;
+  line-height:1.2;
+}
+
+.card-body {
+  font-size:.875rem;
+  color:var(--sub);
+  line-height:1.7;
+}
+
+.tag-row {
+  display:flex; flex-wrap:wrap; gap:.4rem;
+  margin-top:1.25rem;
+}
+
+.tag {
+  font-size:.68rem;
+  padding:.25rem .7rem;
+  border-radius:100px;
+  background:var(--ink3);
+  border:1px solid var(--wire);
+  color:var(--sub);
+  letter-spacing:.03em;
+}
+
+/* ABOUT */
+.about-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:start;
+}
+
+.about-text {}
+
+.about-lead {
+  font-family:'Fraunces',serif;
+  font-size:clamp(1.4rem, 2.5vw, 2rem);
+  font-weight:300;
+  line-height:1.4;
+  letter-spacing:-.01em;
+  margin-bottom:1.5rem;
+}
+
+.about-lead em { color:var(--gold); font-style:italic; }
+
+.about-body {
+  color:var(--sub);
+  font-size:.95rem;
+  line-height:1.8;
+  margin-bottom:1.25rem;
+}
+
+.about-photo {
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid var(--wire);
+  background:var(--ink2);
+  aspect-ratio:3/4;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:1rem;
+  color:var(--faint);
+  font-size:.8rem;
+  position:relative;
+}
+
+.about-photo .monogram {
+  width:64px; height:64px;
+  border-radius:50%;
+  background:var(--gold2);
+  border:1px solid #c9a96e33;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Fraunces',serif;
+  font-size:1.4rem;
+  color:var(--gold);
+}
+
+.about-photo img {
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+}
+
+/* SKILLS */
+.skills-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:1rem;
+}
+
+.skill-card {
+  background:var(--ink2);
+  border:1px solid var(--wire);
+  border-radius:12px;
+  padding:1.5rem;
+  transition:border-color .2s;
+}
+
+.skill-card:hover { border-color:var(--wire2); }
+
+.skill-cat {
+  font-family:'DM Mono',monospace;
+  font-size:.65rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:1rem;
+}
+
+.skill-items { display:flex; flex-direction:column; gap:.5rem; }
+
+.skill-item {
+  display:flex; align-items:center; gap:.6rem;
+  font-size:.85rem;
+  color:var(--sub);
+}
+
+.skill-item::before {
+  content:'';
+  width:3px; height:3px;
+  border-radius:50%;
+  background:var(--teal);
+  flex-shrink:0;
+}
+
+/* PHILOSOPHY */
+.philosophy {
+  background:var(--ink2);
+  border:1px solid var(--wire);
+  border-radius:16px;
+  padding:4rem;
+  text-align:center;
+}
+
+blockquote {
+  font-family:'Fraunces',serif;
+  font-size:clamp(1.4rem, 2.5vw, 2.2rem);
+  font-weight:300;
+  font-style:italic;
+  line-height:1.5;
+  letter-spacing:-.01em;
+  color:var(--text);
+  max-width:800px;
+  margin:0 auto 1.5rem;
+}
+
+blockquote em { color:var(--gold); }
+
+.quote-attr {
+  font-family:'DM Mono',monospace;
+  font-size:.72rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--sub);
+}
+
+/* CTA */
+.cta {
+  border-top:1px solid var(--wire);
+  padding:6rem 3rem;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.cta::before {
+  content:'';
+  position:absolute;
+  top:-200px; left:50%; transform:translateX(-50%);
+  width:600px; height:400px;
+  background:radial-gradient(circle, #c9a96e0a 0%, transparent 70%);
+  pointer-events:none;
+}
+
+.cta-eyebrow {
+  font-family:'DM Mono',monospace;
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--teal);
+  margin-bottom:1.5rem;
+}
+
+.cta h2 {
+  font-family:'Fraunces',serif;
+  font-size:clamp(2.5rem, 5vw, 4.5rem);
+  font-weight:300;
+  line-height:1.0;
+  letter-spacing:-.03em;
+  margin-bottom:1.5rem;
+}
+
+.cta h2 em { color:var(--gold); font-style:italic; }
+
+.cta p {
+  color:var(--sub);
+  max-width:480px;
+  margin:0 auto 2.5rem;
+  font-size:.95rem;
+}
+
+.cta-btns { display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; }
+
+/* FOOTER */
+footer {
+  border-top:1px solid var(--wire);
+  padding:2rem 3rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:.8rem;
+  color:var(--faint);
+}
+
+.footer-links { display:flex; gap:2rem; }
+.footer-links a {
+  color:var(--sub);
+  text-decoration:none;
+  position:relative;
+  transition:color .2s;
+}
+.footer-links a::after {
+  content:'';
+  position:absolute;
+  bottom:-2px; left:0; right:0;
+  height:1px;
+  background:var(--gold);
+  transform:scaleX(0);
+  transition:transform .2s;
+  transform-origin:left;
+}
+.footer-links a:hover { color:var(--gold); }
+.footer-links a:hover::after { transform:scaleX(1); }
+
+/* ANIMATIONS */
+@keyframes rise {
+  from { opacity:0; transform:translateY(20px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+.reveal {
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.reveal.on { opacity:1; transform:translateY(0); }
+
+/* DIVIDER */
+.divider {
+  border:none;
+  border-top:1px solid var(--wire);
+  margin:0;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px) {
+  .hero { grid-template-columns:1fr; gap:2rem; padding:7rem 1.5rem 3rem; }
+  .hero-right { display:none; }
+  .about-grid { grid-template-columns:1fr; }
+  .about-photo { display:none; }
+  .card-1,.card-2,.card-3,.card-4,.card-5 { grid-column:span 12; }
+  nav { padding:1.2rem 1.5rem; }
+  .nav-links { display:none; }
+  .section { padding:4rem 1.5rem; }
+  footer { flex-direction:column; gap:1rem; text-align:center; }
+  .philosophy { padding:2.5rem 1.5rem; }
+  .cta { padding:4rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-mark">PL</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Stack</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">AI & Cloud Engineer · Georgia Tech MSCS</div>
+    <h1 class="hero-name">
+      Pratik<br>
+      <em>Lamsal</em><br>
+    </h1>
+    <p class="hero-role">
+      Building <strong>agentic AI systems</strong> at the intersection of cloud infrastructure, healthcare innovation, and human connection — from Nepal to the frontier of what's possible.
+    </p>
+    <div class="hero-cta">
+      <a href="https://huggingface.co/spaces/pboss101/pratik-ai-agent_" target="_blank" class="btn btn-fill">✦ Chat with my AI Clone</a>
+      <a href="mailto:your@email.com" class="btn btn-ghost">Get in touch →</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-photo-frame">
+      <!-- Replace with: <img src="your-photo.jpg" alt="Pratik Lamsal"> -->
+      <div class="monogram">PL</div>
+      <span style="font-size:.75rem; color:var(--faint);">Upload your photo</span>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-pill">
+        <div class="stat-pill-num">3</div>
+        <div class="stat-pill-label">Live Projects</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-pill-num">MSCS</div>
+        <div class="stat-pill-label">Georgia Tech</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-pill-num">60%+</div>
+        <div class="stat-pill-label">Target ROI</div>
+      </div>
+      <div class="stat-pill">
+        <div class="stat-pill-num">24/7</div>
+        <div class="stat-pill-label">Agent Live</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item"><span>→</span>LangGraph</span>
+    <span class="marquee-item"><span>→</span>AutoGen</span>
+    <span class="marquee-item"><span>→</span>Snowflake</span>
+    <span class="marquee-item"><span>→</span>AWS</span>
+    <span class="marquee-item"><span>→</span>OpenAI</span>
+    <span class="marquee-item"><span>→</span>Anthropic Claude</span>
+    <span class="marquee-item"><span>→</span>CrewAI</span>
+    <span class="marquee-item"><span>→</span>MCP</span>
+    <span class="marquee-item"><span>→</span>Gradio</span>
+    <span class="marquee-item"><span>→</span>Python</span>
+    <span class="marquee-item"><span>→</span>CI/CD</span>
+    <span class="marquee-item"><span>→</span>RAG Pipelines</span>
+    <span class="marquee-item"><span>→</span>Healthcare AI</span>
+    <span class="marquee-item"><span>→</span>LangGraph</span>
+    <span class="marquee-item"><span>→</span>AutoGen</span>
+    <span class="marquee-item"><span>→</span>Snowflake</span>
+    <span class="marquee-item"><span>→</span>AWS</span>
+    <span class="marquee-item"><span>→</span>OpenAI</span>
+    <span class="marquee-item"><span>→</span>Anthropic Claude</span>
+    <span class="marquee-item"><span>→</span>CrewAI</span>
+    <span class="marquee-item"><span>→</span>MCP</span>
+    <span class="marquee-item"><span>→</span>Gradio</span>
+    <span class="marquee-item"><span>→</span>Python</span>
+    <span class="marquee-item"><span>→</span>CI/CD</span>
+    <span class="marquee-item"><span>→</span>RAG Pipelines</span>
+    <span class="marquee-item"><span>→</span>Healthcare AI</span>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">What I'm <em>building</em></h2>
+  </div>
+  <div class="bento">
+
+    <div class="card card-1 reveal">
+      <div class="card-label">Healthcare · Agentic AI</div>
+      <div class="card-icon">🏥</div>
+      <div class="card-title">Patient Intake App</div>
+      <p class="card-body">An end-to-end agentic system that increases patient form completion rates. Reduces drop-off by making the intake process faster, smarter, and guided — improving outcomes for both patients and providers. Built at Moffitt Cancer Center.</p>
+      <div class="tag-row">
+        <span class="tag">LangGraph</span>
+        <span class="tag">Healthcare</span>
+        <span class="tag">Agentic AI</span>
+        <span class="tag">AWS</span>
+      </div>
+    </div>
+
+    <div class="card card-2 reveal">
+      <div class="card-label">Human Connection</div>
+      <div class="card-icon">💛</div>
+      <div class="card-title">Belonging Platform</div>
+      <p class="card-body">A dating and connection platform where AI-guided conversation helps people find each other through values and emotional presence — before appearance ever enters the picture.</p>
+      <div class="tag-row">
+        <span class="tag">AI Conversation</span>
+        <span class="tag">Gradio</span>
+        <span class="tag">OpenAI</span>
+      </div>
+    </div>
+
+    <div class="card card-3 reveal">
+      <div class="card-label">FinTech · Trading</div>
+      <div class="card-icon">📈</div>
+      <div class="card-title">Swing Trading Platform</div>
+      <p class="card-body">AI-powered platform targeting 60%+ ROI. Analyzes market signals, times entries and exits, surfaces high-probability trades using reasoning models.</p>
+      <div class="tag-row">
+        <span class="tag">Reasoning Models</span>
+        <span class="tag">Snowflake</span>
+        <span class="tag">FinTech</span>
+      </div>
+    </div>
+
+    <div class="card card-4 reveal">
+      <div class="card-label">Live · AI Agent</div>
+      <div class="card-icon">🤖</div>
+      <div class="card-title">Personal AI Clone</div>
+      <p class="card-body">A live Gradio-powered agent that represents me online — answers questions about my work, captures leads, and notifies me in real time. Deployed on Hugging Face Spaces. Available 24/7 without me lifting a finger.</p>
+      <div class="tag-row">
+        <span class="tag">Gradio</span>
+        <span class="tag">Tool Calling</span>
+        <span class="tag">Pushover</span>
+        <span class="tag">HuggingFace</span>
+        <span class="tag">Live Now</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">The <em>person</em> behind the code</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p class="about-lead">From <em>Nepal</em> to the frontier of agentic AI.</p>
+      <p class="about-body">I'm Pratik Lamsal — a Cloud Engineer and AI systems builder currently pursuing my MSCS at Georgia Tech while working at Moffitt Cancer Center. I build systems that don't just automate tasks; they reason, adapt, and create real impact.</p>
+      <p class="about-body">My work sits at the intersection of cloud infrastructure, healthcare technology, and AI — three fields where the stakes are real and the margin for mediocrity is zero. I believe the best AI systems are the ones that make humans more capable, not less.</p>
+      <p class="about-body">When I'm not building, I'm studying how agentic systems fail, so I can make mine more reliable. I use reasoning and review model architectures to stress-test every project before scaling.</p>
+      <div style="margin-top:2rem;">
+        <a href="https://linkedin.com/in/pratiklamsal" target="_blank" class="btn btn-ghost">View LinkedIn →</a>
+      </div>
+    </div>
+    <div class="about-photo reveal">
+      <!-- Replace with: <img src="your-photo.jpg" alt="Pratik Lamsal"> -->
+      <div class="monogram">PL</div>
+      <span style="font-size:.75rem; color:var(--faint);">Your photo here</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Technical <em>stack</em></h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <div class="skill-cat">Agentic Frameworks</div>
+      <div class="skill-items">
+        <span class="skill-item">LangChain / LangGraph</span>
+        <span class="skill-item">AutoGen</span>
+        <span class="skill-item">CrewAI</span>
+        <span class="skill-item">OpenAI Agents SDK</span>
+        <span class="skill-item">MCP (Model Context Protocol)</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-cat">AI & Models</div>
+      <div class="skill-items">
+        <span class="skill-item">OpenAI GPT-4 / o1</span>
+        <span class="skill-item">Anthropic Claude</span>
+        <span class="skill-item">Reasoning Models</span>
+        <span class="skill-item">RAG Pipelines</span>
+        <span class="skill-item">Prompt Engineering</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-cat">Cloud & Data</div>
+      <div class="skill-items">
+        <span class="skill-item">AWS</span>
+        <span class="skill-item">Snowflake</span>
+        <span class="skill-item">CI/CD Automation</span>
+        <span class="skill-item">DevOps</span>
+        <span class="skill-item">SQL / NoSQL</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-cat">Build & Deploy</div>
+      <div class="skill-items">
+        <span class="skill-item">Python</span>
+        <span class="skill-item">Gradio</span>
+        <span class="skill-item">Hugging Face Spaces</span>
+        <span class="skill-item">GitHub Pages</span>
+        <span class="skill-item">FastAPI</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PHILOSOPHY -->
+<section class="section">
+  <div class="philosophy reveal">
+    <blockquote>
+      "AI should be aligned with human outcomes — <em>better health, deeper connection,</em> and real financial freedom."
+    </blockquote>
+    <p class="quote-attr">— Pratik Lamsal · Builder, Georgia Tech MSCS</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta" id="contact">
+  <p class="cta-eyebrow">Open to collaboration</p>
+  <h2>Let's build<br>something <em>real.</em></h2>
+  <p>I'm looking for collaborators, investors, and engineers who want to work on problems that actually matter.</p>
+  <div class="cta-btns">
+    <a href="https://huggingface.co/spaces/pboss101/pratik-ai-agent_" target="_blank" class="btn btn-fill">✦ Talk to my AI Agent</a>
+    <a href="https://linkedin.com/in/pratiklamsal" target="_blank" class="btn btn-ghost">LinkedIn →</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Pratik Lamsal</span>
+  <div class="footer-links">
+    <a href="https://huggingface.co/spaces/pboss101/pratik-ai-agent_" target="_blank">AI Agent</a>
+    <a href="https://linkedin.com/in/pratiklamsal" target="_blank">LinkedIn</a>
+    <a href="https://github.com/plamsal" target="_blank">GitHub</a>
+    <a href="mailto:your@email.com">Email</a>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('on'), i * 100);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Card glow follow mouse
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+  });
+});
+</script>
+</body>
+</html>
