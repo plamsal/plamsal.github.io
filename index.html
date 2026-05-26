@@ -35,7 +35,6 @@ body {
   overflow-x: hidden;
 }
 
-/* GRAIN */
 body::after {
   content:'';
   position:fixed;
@@ -46,7 +45,6 @@ body::after {
   opacity:.5;
 }
 
-/* NAV */
 nav {
   position:fixed; top:0; left:0; right:0; z-index:100;
   display:flex; justify-content:space-between; align-items:center;
@@ -81,10 +79,16 @@ nav {
   transition:color .2s;
 }
 .nav-links a:hover { color:var(--text); }
+.nav-links a.nav-agent {
+  color:var(--gold);
+  border:1px solid #c9a96e33;
+  padding:.3rem .8rem;
+  border-radius:100px;
+}
+.nav-links a.nav-agent:hover { background:var(--gold2); color:var(--gold); }
 .nav-mobile { display:none; }
 .nav-burger { display:none; }
 
-/* HERO */
 .hero {
   min-height:100vh;
   display:grid;
@@ -95,8 +99,6 @@ nav {
   margin:0 auto;
   gap:4rem;
 }
-
-.hero-left {}
 
 .eyebrow {
   display:inline-flex; align-items:center; gap:.6rem;
@@ -126,10 +128,7 @@ nav {
   animation: rise .8s .2s ease forwards;
 }
 
-.hero-name em {
-  font-style:italic;
-  color:var(--gold);
-}
+.hero-name em { font-style:italic; color:var(--gold); }
 
 .hero-role {
   font-size:1rem;
@@ -159,6 +158,7 @@ nav {
   text-decoration:none;
   transition:all .25s;
   letter-spacing:.02em;
+  cursor:pointer;
 }
 
 .btn-fill {
@@ -166,22 +166,15 @@ nav {
   color:#0d0d0f;
   border:1px solid var(--gold);
 }
-.btn-fill:hover {
-  background:transparent;
-  color:var(--gold);
-}
+.btn-fill:hover { background:transparent; color:var(--gold); }
 
 .btn-ghost {
   background:transparent;
   color:var(--text);
   border:1px solid var(--wire2);
 }
-.btn-ghost:hover {
-  border-color:var(--faint);
-  background:var(--ink3);
-}
+.btn-ghost:hover { border-color:var(--faint); background:var(--ink3); }
 
-/* HERO RIGHT */
 .hero-right {
   display:flex;
   flex-direction:column;
@@ -197,26 +190,7 @@ nav {
   overflow:hidden;
   border:1px solid var(--wire);
   background:var(--ink2);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:1rem;
-  color:var(--faint);
-  font-size:.8rem;
   position:relative;
-}
-
-.hero-photo-frame .monogram {
-  width:72px; height:72px;
-  border-radius:50%;
-  background:var(--gold2);
-  border:1px solid #c9a96e44;
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Fraunces',serif;
-  font-size:1.6rem;
-  font-weight:300;
-  color:var(--gold);
 }
 
 .hero-photo-frame img {
@@ -254,7 +228,6 @@ nav {
   color:var(--sub);
 }
 
-/* MARQUEE */
 .marquee-wrap {
   border-top:1px solid var(--wire);
   border-bottom:1px solid var(--wire);
@@ -286,7 +259,6 @@ nav {
   to { transform:translateX(-50%); }
 }
 
-/* SECTIONS */
 .section {
   padding:6rem 3rem;
   max-width:1200px;
@@ -317,11 +289,9 @@ nav {
 
 .section-title em { color:var(--gold); font-style:italic; }
 
-/* BENTO GRID */
 .bento {
   display:grid;
   grid-template-columns:repeat(12, 1fr);
-  grid-template-rows:auto;
   gap:1rem;
 }
 
@@ -387,10 +357,7 @@ nav {
   line-height:1.7;
 }
 
-.tag-row {
-  display:flex; flex-wrap:wrap; gap:.4rem;
-  margin-top:1.25rem;
-}
+.tag-row { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:1.25rem; }
 
 .tag {
   font-size:.68rem;
@@ -402,15 +369,12 @@ nav {
   letter-spacing:.03em;
 }
 
-/* ABOUT */
 .about-grid {
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:4rem;
   align-items:start;
 }
-
-.about-text {}
 
 .about-lead {
   font-family:'Fraunces',serif;
@@ -436,34 +400,9 @@ nav {
   border:1px solid var(--wire);
   background:var(--ink2);
   aspect-ratio:3/4;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:1rem;
-  color:var(--faint);
-  font-size:.8rem;
   position:relative;
 }
 
-.about-photo .monogram {
-  width:64px; height:64px;
-  border-radius:50%;
-  background:var(--gold2);
-  border:1px solid #c9a96e33;
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Fraunces',serif;
-  font-size:1.4rem;
-  color:var(--gold);
-}
-
-.about-photo img {
-  position:absolute; inset:0;
-  width:100%; height:100%;
-  object-fit:cover;
-}
-
-/* SKILLS */
 .skills-grid {
   display:grid;
   grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
@@ -505,7 +444,6 @@ nav {
   flex-shrink:0;
 }
 
-/* PHILOSOPHY */
 .philosophy {
   background:var(--ink2);
   border:1px solid var(--wire);
@@ -534,6 +472,69 @@ blockquote em { color:var(--gold); }
   letter-spacing:.1em;
   text-transform:uppercase;
   color:var(--sub);
+}
+
+/* ── AGENT SECTION ── */
+.agent-section {
+  padding:6rem 3rem;
+  max-width:1200px;
+  margin:0 auto;
+}
+
+.agent-frame {
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid var(--wire2);
+  height:720px;
+  position:relative;
+  background:var(--ink2);
+}
+
+.agent-frame::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at 50% 0%, #c9a96e08, transparent 60%);
+  pointer-events:none;
+  z-index:1;
+}
+
+.agent-frame iframe {
+  width:100%;
+  height:100%;
+  border:none;
+  display:block;
+  position:relative;
+  z-index:0;
+}
+
+.agent-badge {
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  background:var(--ink2);
+  border:1px solid var(--wire2);
+  border-radius:100px;
+  padding:.4rem 1rem;
+  font-family:'DM Mono',monospace;
+  font-size:.68rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--teal);
+  margin-bottom:1.5rem;
+}
+
+.agent-badge::before {
+  content:'';
+  width:6px; height:6px;
+  border-radius:50%;
+  background:var(--teal);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity:1; box-shadow:0 0 0 0 #4ecdc466; }
+  50% { opacity:.6; box-shadow:0 0 0 6px transparent; }
 }
 
 /* CTA */
@@ -573,17 +574,9 @@ blockquote em { color:var(--gold); }
 }
 
 .cta h2 em { color:var(--gold); font-style:italic; }
-
-.cta p {
-  color:var(--sub);
-  max-width:480px;
-  margin:0 auto 2.5rem;
-  font-size:.95rem;
-}
-
+.cta p { color:var(--sub); max-width:480px; margin:0 auto 2.5rem; font-size:.95rem; }
 .cta-btns { display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; }
 
-/* FOOTER */
 footer {
   border-top:1px solid var(--wire);
   padding:2rem 3rem;
@@ -614,7 +607,6 @@ footer {
 .footer-links a:hover { color:var(--gold); }
 .footer-links a:hover::after { transform:scaleX(1); }
 
-/* ANIMATIONS */
 @keyframes rise {
   from { opacity:0; transform:translateY(20px); }
   to { opacity:1; transform:translateY(0); }
@@ -627,86 +619,44 @@ footer {
 }
 .reveal.on { opacity:1; transform:translateY(0); }
 
-/* DIVIDER */
-.divider {
-  border:none;
-  border-top:1px solid var(--wire);
-  margin:0;
-}
+.divider { border:none; border-top:1px solid var(--wire); margin:0; }
 
-/* RESPONSIVE */
 @media(max-width:900px) {
-  /* NAV MOBILE DROPDOWN */
   .nav-mobile { display:flex !important; flex-direction:column; max-height:0; overflow:hidden; transition:max-height .3s ease, padding .3s ease; padding:0 1.25rem; }
   .nav-mobile.open { max-height:300px; padding:1rem 1.25rem; }
-  /* NAV */
   nav { padding:1rem 1.25rem; }
   .nav-links { display:none; }
   .nav-burger { display:block !important; }
-
-  /* HERO */
-  .hero {
-    grid-template-columns:1fr;
-    gap:2rem;
-    padding:6rem 1.25rem 3rem;
-    min-height:auto;
-  }
+  .hero { grid-template-columns:1fr; gap:2rem; padding:6rem 1.25rem 3rem; min-height:auto; }
   .hero-right { display:none; }
   .eyebrow { font-size:.65rem; margin-bottom:1.25rem; }
   .hero-name { font-size:clamp(2.8rem, 12vw, 4rem); margin-bottom:1rem; }
   .hero-role { font-size:.9rem; margin-bottom:2rem; max-width:100%; }
   .hero-cta { flex-direction:column; gap:.75rem; }
   .btn { width:100%; justify-content:center; padding:.9rem 1.25rem; }
-
-  /* MARQUEE */
   .marquee-item { font-size:.68rem; }
-
-  /* SECTIONS */
   .section { padding:3rem 1.25rem; }
   .section-header { gap:1rem; margin-bottom:2rem; }
   .section-title { font-size:clamp(1.6rem, 7vw, 2.2rem); }
-
-  /* BENTO CARDS */
   .bento { grid-template-columns:1fr; gap:.75rem; }
   .card-1,.card-2,.card-3,.card-4,.card-5 { grid-column:span 1; }
   .card { padding:1.5rem; }
   .card-title { font-size:1.2rem; }
-
-  /* MISSION VISION VALUES */
-  .mvv-grid {
-    grid-template-columns:1fr !important;
-  }
-
-  /* ABOUT */
+  .mvv-grid { grid-template-columns:1fr !important; }
   .about-grid { grid-template-columns:1fr; gap:2rem; }
-  .about-photo {
-    display:flex !important;
-    aspect-ratio:4/3;
-    border-radius:12px;
-    overflow:hidden;
-    border:1px solid var(--wire);
-  }
-  .about-photo .carousel {
-    aspect-ratio:4/3 !important;
-  }
+  .about-photo { aspect-ratio:4/3; border-radius:12px; }
   .about-lead { font-size:1.3rem; }
   .about-body { font-size:.875rem; }
-
-  /* SKILLS */
   .skills-grid { grid-template-columns:1fr; gap:.75rem; }
   .skill-card { padding:1.25rem; }
-
-  /* PHILOSOPHY */
   .philosophy { padding:2rem 1.25rem; border-radius:12px; }
   blockquote { font-size:1.1rem; }
-
-  /* CTA */
+  .agent-section { padding:3rem 1.25rem; }
+  .agent-frame { height:600px; }
   .cta { padding:3.5rem 1.25rem; }
   .cta h2 { font-size:clamp(2rem, 9vw, 3rem); }
   .cta-btns { flex-direction:column; align-items:center; }
   .cta-btns .btn { width:100%; max-width:320px; justify-content:center; }
-
-  /* FOOTER */
   footer { flex-direction:column; gap:1.25rem; text-align:center; padding:1.5rem; }
   .footer-links { flex-wrap:wrap; justify-content:center; gap:1.25rem; }
 }
@@ -715,6 +665,7 @@ footer {
   .hero-name { font-size:clamp(2.4rem, 13vw, 3rem); }
   .stat-pill-num { font-size:1.4rem; }
   .card-icon { width:38px; height:38px; font-size:1rem; }
+  .agent-frame { height:500px; }
 }
 </style>
 </head>
@@ -727,6 +678,7 @@ footer {
     <li><a href="#projects">Work</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Stack</a></li>
+    <li><a href="#agent" class="nav-agent">✦ Ask Nina</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="nav-burger" onclick="document.querySelector('.nav-mobile').classList.toggle('open')" style="display:none; background:none; border:1px solid var(--wire2); border-radius:6px; padding:.4rem .6rem; cursor:pointer; color:var(--text); font-size:1.1rem;">☰</button>
@@ -735,9 +687,9 @@ footer {
   <a href="#projects" onclick="document.querySelector('.nav-mobile').classList.remove('open')" style="color:var(--sub); text-decoration:none; font-size:.9rem; letter-spacing:.06em; text-transform:uppercase;">Work</a>
   <a href="#about" onclick="document.querySelector('.nav-mobile').classList.remove('open')" style="color:var(--sub); text-decoration:none; font-size:.9rem; letter-spacing:.06em; text-transform:uppercase;">About</a>
   <a href="#skills" onclick="document.querySelector('.nav-mobile').classList.remove('open')" style="color:var(--sub); text-decoration:none; font-size:.9rem; letter-spacing:.06em; text-transform:uppercase;">Stack</a>
+  <a href="#agent" onclick="document.querySelector('.nav-mobile').classList.remove('open')" style="color:var(--gold); text-decoration:none; font-size:.9rem; letter-spacing:.06em; text-transform:uppercase;">✦ Ask Nina</a>
   <a href="#contact" onclick="document.querySelector('.nav-mobile').classList.remove('open')" style="color:var(--sub); text-decoration:none; font-size:.9rem; letter-spacing:.06em; text-transform:uppercase;">Contact</a>
 </div>
-
 
 <!-- HERO -->
 <div class="hero">
@@ -748,15 +700,14 @@ footer {
       <em>Lamsal</em><br>
     </h1>
     <p class="hero-role">
-      Building <strong>agentic AI systems</strong> at the intersection of cloud infrastructure, healthcare innovation, and human connection. My priority is engineering intelligent systems that protect and ease social interaction — not replace it. I believe AI should be a tool that simplifies complexity so humans have more room to connect, ensuring we never cross the line into automating our humanity.
+      Building <strong>agentic AI systems</strong> at the intersection of cloud infrastructure, healthcare innovation, and human connection. My priority is engineering intelligent systems that protect and ease social interaction — not replace it.
     </p>
     <div class="hero-cta">
-      <a href="https://huggingface.co/spaces/pboss101/portfolio-agent" target="_blank" class="btn btn-fill">✦ Chat with my AI Clone</a>
+      <a href="#agent" class="btn btn-fill">✦ Chat with my AI Team</a>
       <a href="https://mail.google.com/mail/?view=cm&to=lamsalservicenow@gmail.com" target="_blank" class="btn btn-ghost">Get in touch →</a>
-      <button onclick="navigator.clipboard.writeText('lamsalservicenow@gmail.com').then(()=>{this.textContent='✓ Copied!';setTimeout(()=>{this.textContent='Copy email'},2000)})" class="btn btn-ghost" style="cursor:pointer; font-family:inherit;">Copy email</button>
+      <button onclick="navigator.clipboard.writeText('lamsalservicenow@gmail.com').then(()=>{this.textContent='✓ Copied!';setTimeout(()=>{this.textContent='Copy email'},2000)})" class="btn btn-ghost" style="font-family:inherit;">Copy email</button>
     </div>
   </div>
-
   <div class="hero-right">
     <div class="hero-photo-frame">
       <img src="photo.jpeg" alt="Pratik Lamsal">
@@ -821,7 +772,6 @@ footer {
     <h2 class="section-title">What I'm <em>building</em></h2>
   </div>
   <div class="bento">
-
     <div class="card card-1 reveal">
       <div class="card-label">Healthcare · Agentic AI</div>
       <div class="card-icon">🏥</div>
@@ -834,45 +784,40 @@ footer {
         <span class="tag">AWS</span>
       </div>
     </div>
-
     <div class="card card-2 reveal">
       <div class="card-label">Human Connection</div>
       <div class="card-icon">💛</div>
       <div class="card-title">Belonging Platform</div>
-      <p class="card-body">A dating and connection platform where AI-guided conversation helps people find each other through values and emotional presence — before appearance ever enters the picture.</p>
+      <p class="card-body">A connection platform where AI-guided conversation helps people find each other through values and emotional presence — before appearance ever enters the picture.</p>
       <div class="tag-row">
         <span class="tag">AI Conversation</span>
         <span class="tag">Gradio</span>
         <span class="tag">OpenAI</span>
       </div>
     </div>
-
     <div class="card card-3 reveal">
       <div class="card-label">FinTech · Trading</div>
       <div class="card-icon">📈</div>
       <div class="card-title">Swing Trading Platform</div>
-      <p class="card-body">AI-powered platform targeting 20%+ consistent ROI. Analyzes market signals, times entries and exits, surfaces high-probability trades using reasoning models built for retail investors.</p>
+      <p class="card-body">AI-powered platform targeting consistent ROI. Analyzes market signals, times entries and exits, surfaces high-probability trades using reasoning models built for retail investors.</p>
       <div class="tag-row">
         <span class="tag">Reasoning Models</span>
         <span class="tag">Snowflake</span>
         <span class="tag">FinTech</span>
       </div>
     </div>
-
     <div class="card card-4 reveal">
       <div class="card-label">Live · AI Agent</div>
       <div class="card-icon">🤖</div>
-      <div class="card-title">Personal AI Clone</div>
-      <p class="card-body">A live Gradio-powered agent that represents me online — answers questions about my work, captures leads, and notifies me in real time. Deployed on Hugging Face Spaces. Available 24/7 without me lifting a finger.</p>
+      <div class="card-title">Personal AI Team</div>
+      <p class="card-body">A live multi-agent system — Nina coordinates, Liza answers portfolio questions, Don handles connections and scheduling. Deployed on Hugging Face Spaces. Available 24/7.</p>
       <div class="tag-row">
+        <span class="tag">OpenAI Agents SDK</span>
         <span class="tag">Gradio</span>
-        <span class="tag">Tool Calling</span>
-        <span class="tag">Pushover</span>
-        <span class="tag">HuggingFace</span>
+        <span class="tag">Multi-Agent</span>
         <span class="tag">Live Now</span>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -888,8 +833,8 @@ footer {
     <div class="about-text">
       <p class="about-lead">From <em>Nepal</em> to the leading edge of enterprise AI.</p>
       <p class="about-body">My journey started in Nepal and has led me to the leading edge of enterprise AI — but my core philosophy has always stayed the same: the best technology is built with clear, human purpose.</p>
-      <p class="about-body">I'm Pratik Lamsal. As a Georgia Tech grad and AI Systems Builder, I shape the technical architecture at Moffitt Cancer Center. My work lives where cloud infrastructure, healthcare technology, and agentic AI collide — a space where precision isn't just a metric; it's a requirement, and the margin for error is zero.</p>
-      <p class="about-body">We are living through a massive shift. <a href="https://www.deloitte.com/us/en/insights/industry/health-care/agentic-ai-health-care-operating-model-change.html" target="_blank" style="color:var(--gold);text-decoration:none;border-bottom:1px solid #c9a96e44;">Recent Deloitte research</a> highlights that healthcare leaders are rapidly moving agentic AI out of the pilot phase and into core operating models to stabilize workforces and improve care delivery. But as these autonomous systems scale, the real challenge isn't just writing code that replaces a workflow — it's building trust.</p>
+      <p class="about-body">I'm Pratik Lamsal. As a Georgia Tech grad and AI Systems Builder, I shape the technical architecture at Moffitt Cancer Center. My work lives where cloud infrastructure, healthcare technology, and agentic AI collide — a space where precision isn't just a metric; it's a requirement.</p>
+      <p class="about-body">We are living through a massive shift. <a href="https://www.deloitte.com/us/en/insights/industry/health-care/agentic-ai-health-care-operating-model-change.html" target="_blank" style="color:var(--gold);text-decoration:none;border-bottom:1px solid #c9a96e44;">Recent Deloitte research</a> highlights that healthcare leaders are rapidly moving agentic AI out of the pilot phase and into core operating models. The real challenge isn't just writing code that replaces a workflow — it's building trust.</p>
       <p class="about-body">I design responsible, multi-agent ecosystems that reason alongside human teams, scale smoothly, and make people fundamentally better at what they do.</p>
       <div style="margin-top:2rem;">
         <a href="https://www.linkedin.com/in/pratiklam/" target="_blank" class="btn btn-ghost">View LinkedIn →</a>
@@ -915,7 +860,7 @@ footer {
 <!-- SKILLS -->
 <section class="section" id="skills">
   <div class="section-header reveal">
-    <span class="section-num">05</span>
+    <span class="section-num">03</span>
     <h2 class="section-title">Technical <em>stack</em></h2>
   </div>
   <div class="skills-grid">
@@ -971,30 +916,26 @@ footer {
     <h2 class="section-title">Mission, Vision <em>& Values</em></h2>
   </div>
   <div class="mvv-grid">
-
     <div class="card reveal" style="grid-column:span 1;">
       <div class="card-label">Mission</div>
       <div class="card-icon">🧭</div>
       <div class="card-title">Why I build</div>
       <p class="card-body">To engineer intelligent, adaptive tools that automate complexity and eliminate systemic friction — freeing humanity to focus on purposeful, creative, and high-impact endeavors.</p>
     </div>
-
     <div class="card reveal" style="grid-column:span 1;">
       <div class="card-label">Vision</div>
       <div class="card-icon">🔭</div>
       <div class="card-title">What I'm building toward</div>
-      <p class="card-body">A world where technology transforms societal sectors — from healthcare to finance — into positive-sum environments. A future free from artificial scarcity, where optimized resources ensure every driven individual has equal opportunity to grow, thrive, and access world-class services.</p>
+      <p class="card-body">A world where technology transforms societal sectors — from healthcare to finance — into positive-sum environments. A future where optimized resources ensure every driven individual has equal opportunity to grow and thrive.</p>
     </div>
-
     <div class="card reveal" style="grid-column:span 1;">
       <div class="card-label">Values</div>
       <div class="card-icon">⚖️</div>
       <div class="card-title">What I stand for</div>
       <p class="card-body" style="margin-bottom:.75rem;"><strong style="color:var(--text); font-weight:500;">Irreplaceable Human Dignity</strong> — Technology must always serve to elevate and protect a dignified standard of life for all.</p>
       <p class="card-body" style="margin-bottom:.75rem;"><strong style="color:var(--text); font-weight:500;">Positive-Sum Thinking</strong> — We design systems that expand possibilities so one person's success never comes at the cost of another's.</p>
-      <p class="card-body"><strong style="color:var(--text); font-weight:500;">Space to Wonder</strong> — We build to give humanity their time back — moving away from routine friction so we have the mental space to look at the stars and seek deeper meaning.</p>
+      <p class="card-body"><strong style="color:var(--text); font-weight:500;">Space to Wonder</strong> — We build to give humanity their time back — so we have the mental space to look at the stars and seek deeper meaning.</p>
     </div>
-
   </div>
 </section>
 
@@ -1013,13 +954,38 @@ footer {
   </div>
 </section>
 
+<hr class="divider">
+
+<!-- AI AGENT SECTION -->
+<section class="agent-section reveal" id="agent">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Meet my <em>AI team</em></h2>
+  </div>
+  <div class="agent-badge">● Live now — Nina, Liza & Don are online</div>
+  <p style="color:var(--sub); font-size:.95rem; margin-bottom:2rem; max-width:560px;">
+    Ask Nina anything — about my projects, background, or how to collaborate. 
+    She'll connect you with the right specialist on my team.
+  </p>
+  <div class="agent-frame">
+    <iframe
+      src="https://pboss101-portfolio-agent.hf.space"
+      frameborder="0"
+      loading="lazy"
+      title="Pratik's AI Team"
+    ></iframe>
+  </div>
+</section>
+
+<hr class="divider">
+
 <!-- CTA -->
 <div class="cta" id="contact">
   <p class="cta-eyebrow">Open to collaboration</p>
   <h2>Let's build<br>something <em>real.</em></h2>
   <p>I'm looking for collaborators, investors, and engineers who want to work on problems that actually matter.</p>
   <div class="cta-btns">
-    <a href="https://huggingface.co/spaces/pboss101/portfolio-agent" target="_blank" class="btn btn-fill">✦ Talk to my AI Agent</a>
+    <a href="#agent" class="btn btn-fill">✦ Talk to my AI Team</a>
     <a href="https://www.linkedin.com/in/pratiklam/" target="_blank" class="btn btn-ghost">LinkedIn →</a>
   </div>
 </div>
@@ -1028,7 +994,7 @@ footer {
 <footer>
   <span>© 2026 Pratik Lamsal</span>
   <div class="footer-links">
-    <a href="https://huggingface.co/spaces/pboss101/portfolio-agent" target="_blank">AI Agent</a>
+    <a href="#agent">AI Team</a>
     <a href="https://www.linkedin.com/in/pratiklam/" target="_blank">LinkedIn</a>
     <a href="https://github.com/plamsal" target="_blank">GitHub</a>
     <a href="mailto:lamsalservicenow@gmail.com">Email</a>
@@ -1062,7 +1028,6 @@ function goTo(n) {
 dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); clearInterval(timer); timer = setInterval(() => goTo(current + 1), 5000); }));
 let timer = setInterval(() => goTo(current + 1), 5000);
 
-// Card glow follow mouse
 document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('mousemove', e => {
     const r = card.getBoundingClientRect();
