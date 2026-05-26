@@ -1124,25 +1124,34 @@ async function mobileSend() {
   msgs.scrollTop = msgs.scrollHeight;
 
   try {
-    // Call Gradio API
-    const res = await fetch(`${HF_API}/api/predict`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
+    // Call Gradio API - correct endpoint
+    const historyForAPI = mobileHistory.slice(0, -1);
+    const res = await fetch(`${HF_API}/run/predict`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
         fn_index: 0,
-        data: [text, mobileHistory.slice(0,-1)]
+        data: [text, historyForAPI]
       })
     });
     const data = await res.json();
-    const reply = data.data ? (data.data[1]?.at(-1)?.content || data.data[0] || 'I had trouble responding. Please try again.') : 'I had trouble responding. Please try again.';
-
-    // Remove typing, add reply
+    let reply = "I had trouble responding. Please try again.";
+    if (data.data) {
+      const d = data.data;
+      if (Array.isArray(d[1]) && d[1].length > 0) {
+        const last = d[1][d[1].length - 1];
+        reply = last?.content || (Array.isArray(last) ? last[1] : null) || reply;
+      } else if (typeof d[0] === "string" && d[0]) {
+        reply = d[0];
+      }
+    }
     document.getElementById(typingId)?.remove();
     msgs.innerHTML += `<div class="mobile-msg bot"><div class="mobile-msg-bubble">${reply}</div></div>`;
-    mobileHistory.push({role:'assistant', content: reply});
+    mobileHistory.push({role:"assistant", content: reply});
   } catch(e) {
+    console.error("API error:", e);
     document.getElementById(typingId)?.remove();
-    msgs.innerHTML += `<div class="mobile-msg bot"><div class="mobile-msg-bubble typing">Having trouble connecting. Try refreshing or visit the full agent on desktop.</div></div>`;
+    msgs.innerHTML += `<div class="mobile-msg bot"><div class="mobile-msg-bubble typing">Having trouble connecting. Please try again in a moment.</div></div>`;
   }
 
   btn.disabled = false;
