@@ -60,7 +60,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .section-title em{color:var(--gold);font-style:italic;}
 .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:1rem;}
 .card{background:var(--ink2);border:1px solid var(--wire);border-radius:12px;padding:2rem;transition:all .3s;position:relative;overflow:hidden;}
-.card::before{content:'';position:absolute;inset:0;background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),#c9a96e08,transparent 40%);opacity:0;transition:opacity .4s;}
+.card::before{content:'';position:absolute;inset:0;background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),#c9a96e08,transparent 40%);opacity:0;transition:opacity .4s;pointer-events:none;}
 .card:hover::before{opacity:1;}
 .card:hover{border-color:var(--wire2);}
 .card-1{grid-column:span 7;}
@@ -74,7 +74,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .card-body{font-size:.875rem;color:var(--sub);line-height:1.7;}
 .tag-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.25rem;}
 .tag{font-size:.68rem;padding:.25rem .7rem;border-radius:100px;background:var(--ink3);border:1px solid var(--wire);color:var(--sub);letter-spacing:.03em;}
-.card-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.25rem;font-size:.78rem;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid #c9a96e33;padding-bottom:2px;transition:border-color .2s;}
+.card-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.25rem;font-size:.78rem;color:var(--gold);text-decoration:none;font-family:'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid #c9a96e33;padding-bottom:2px;transition:border-color .2s;position:relative;z-index:2;cursor:pointer;}
 .card-link:hover{border-color:#c9a96e99;}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
 .about-lead{font-family:'Fraunces',serif;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:300;line-height:1.4;letter-spacing:-.01em;margin-bottom:1.5rem;}
