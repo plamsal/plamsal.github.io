@@ -48,7 +48,7 @@ nav{
   letter-spacing:.2em;text-transform:uppercase;
   color:var(--green);text-decoration:none;
 }
-.nav-links{display:flex;gap:3rem;list-style:none;}
+.nav-links{display:flex;gap:2.25rem;list-style:none;align-items:center;}
 .nav-links a{
   font-family:'Barlow Condensed',sans-serif;
   font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;
@@ -63,6 +63,14 @@ nav{
   padding:.35rem .9rem;transition:all .2s;
 }
 .nav-agent:hover{background:var(--green);color:#fff !important;}
+.nav-book{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+  color:#fff;background:var(--green);
+  border:1.5px solid var(--green);border-radius:var(--r);
+  padding:.35rem .9rem;transition:all .2s;cursor:pointer;
+}
+.nav-book:hover{background:var(--green2);border-color:var(--green2);}
 .nav-burger{
   display:none;background:none;border:1px solid var(--border2);
   border-radius:var(--r);padding:.35rem .65rem;cursor:pointer;
@@ -74,7 +82,7 @@ nav{
   z-index:99;flex-direction:column;
   max-height:0;overflow:hidden;transition:max-height .3s ease;
 }
-.nav-mobile.open{max-height:280px;}
+.nav-mobile.open{max-height:320px;}
 .nav-mobile a{
   font-family:'Barlow Condensed',sans-serif;
   color:var(--sub);text-decoration:none;font-size:.85rem;
@@ -83,6 +91,14 @@ nav{
   display:block;transition:color .2s;font-weight:500;
 }
 .nav-mobile a:hover{color:var(--green);}
+.nav-mobile-book{
+  font-family:'Barlow Condensed',sans-serif;
+  color:var(--green) !important;font-size:.85rem;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:1.1rem 1.75rem;border-bottom:1px solid var(--border);
+  display:block;font-weight:600;cursor:pointer;
+  background:none;border-left:none;border-right:none;border-top:none;width:100%;text-align:left;
+}
 .hero{
   min-height:100vh;
   display:grid;
@@ -364,6 +380,7 @@ footer{
     <li><a href="#interests">Interests</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="https://huggingface.co/spaces/pboss101/portfolio-agent" target="_blank" rel="noopener" class="nav-agent">Connect with Pratik</a></li>
+    <li><button class="nav-book" data-cal-link="pratik-lamsal-d0xifu/30min" data-cal-namespace="nav">Book a call</button></li>
   </ul>
   <button class="nav-burger" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">&#9776;</button>
 </nav>
@@ -373,6 +390,7 @@ footer{
   <a href="#interests" onclick="document.querySelector('.nav-mobile').classList.remove('open')">Interests</a>
   <a href="#contact" onclick="document.querySelector('.nav-mobile').classList.remove('open')">Contact</a>
   <a href="https://huggingface.co/spaces/pboss101/portfolio-agent" target="_blank" rel="noopener" style="color:var(--green);">Connect with Pratik</a>
+  <button class="nav-mobile-book" data-cal-link="pratik-lamsal-d0xifu/30min" data-cal-namespace="mobile">Book a call &rarr;</button>
 </div>
 
 <div class="hero">
@@ -383,6 +401,7 @@ footer{
     <p class="hero-sub">Focused on healthcare, cloud infrastructure, and human-centered products that reduce friction and create real operational value.</p>
     <div class="hero-cta">
       <a href="https://mail.google.com/mail/?view=cm&to=lamsalservicenow@gmail.com" target="_blank" class="btn btn-fill">Get in touch</a>
+      <button class="btn btn-fill" data-cal-link="pratik-lamsal-d0xifu/30min" data-cal-namespace="hero">Book a call</button>
       <a href="https://huggingface.co/spaces/pboss101/portfolio-agent" target="_blank" rel="noopener" class="btn btn-agent">Connect with Pratik</a>
       <button onclick="navigator.clipboard.writeText('lamsalservicenow@gmail.com').then(()=>{this.textContent='Copied';setTimeout(()=>{this.textContent='Copy email'},2000)})" class="btn btn-ghost">Copy email</button>
     </div>
@@ -518,6 +537,7 @@ footer{
     <p>I am interested in thoughtful conversations with builders, healthcare operators, and partners who care about practical AI products with real-world value.</p>
     <div class="cta-btns">
       <a href="https://mail.google.com/mail/?view=cm&to=lamsalservicenow@gmail.com" target="_blank" class="btn btn-fill">Get in touch</a>
+      <button class="btn btn-fill" data-cal-link="pratik-lamsal-d0xifu/30min" data-cal-namespace="cta">Book a call</button>
       <a href="https://huggingface.co/spaces/pboss101/portfolio-agent" target="_blank" rel="noopener" class="btn btn-agent">Connect with Pratik</a>
       <a href="https://www.linkedin.com/in/pratiklam/" target="_blank" class="btn btn-ghost">LinkedIn &rarr;</a>
     </div>
@@ -543,6 +563,19 @@ footer{
     <button class="cookie-decline" onclick="declineCookie()">Decline</button>
   </div>
 </div>
+
+<!-- Cal.com embed -->
+<script type="text/javascript">
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "nav",    {origin:"https://cal.com"});
+Cal("init", "hero",   {origin:"https://cal.com"});
+Cal("init", "cta",    {origin:"https://cal.com"});
+Cal("init", "mobile", {origin:"https://cal.com"});
+Cal.ns.nav("ui",    {hideEventTypeDetails:false,layout:"month_view"});
+Cal.ns.hero("ui",   {hideEventTypeDetails:false,layout:"month_view"});
+Cal.ns.cta("ui",    {hideEventTypeDetails:false,layout:"month_view"});
+Cal.ns.mobile("ui", {hideEventTypeDetails:false,layout:"month_view"});
+</script>
 
 <script>
 const observer = new IntersectionObserver((entries) => {
